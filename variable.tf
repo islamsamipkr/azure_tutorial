@@ -10,3 +10,7 @@ variable "client_secret"{
 variable "tenant_id"{
   type=string
 }
+variable "prefix"{
+  type=string
+  default="MontrealCollege"
+}
