@@ -19,3 +19,7 @@ variable "env"{
   type =string
   default="dev"
 }
+variable "account_tier"{
+type =string
+default="Standard"
+}
