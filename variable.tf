@@ -10,17 +10,3 @@ variable "client_secret"{
 variable "tenant_id"{
   type=string
 }
-variable "prefix"{
-  type=string
-  default="MontrealCollege"
-}
-variable "computer_name"{
-  type =string
-}
-
-variable "admin_username"{
- type=string
-}
-variable "admin_password"{
-  type=string
-}
