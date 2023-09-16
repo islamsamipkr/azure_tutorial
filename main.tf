@@ -1,9 +1,9 @@
 resource "azurerm_resource_group""batcha06"{
-    name="${var.prefix}_Resource_Group"
+    name="${var.prefix}_Resource_Group_${var.env}"
     location="Canada Central"   
 }
 resource "azurerm_storage_account" "awp" {
-  name                     = "${var.prefix}-storageaccountname"
+  name                     = "${var.prefix}-storageaccountname_${var.env}"
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location
   account_tier             = "Standard"
