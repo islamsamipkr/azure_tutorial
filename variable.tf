@@ -15,3 +15,7 @@ variable "prefix"{
   type=string
   default="batchA06"
 }
+variable "env"{
+  type =string
+  default="dev"
+}
