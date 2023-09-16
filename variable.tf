@@ -13,7 +13,7 @@ variable "tenant_id"{
 
 variable "prefix"{
   type=string
-  default="batchA06"
+  default="batcha06"
 }
 variable "env"{
   type =string
