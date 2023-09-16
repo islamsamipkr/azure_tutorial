@@ -2,34 +2,35 @@ resource "azurerm_resource_group""batcha06"{
     name="batch_A06_Resource_Group"
     location="Canada Central"   
 }
+
 resource "azurerm_virtual_network" "mcitnetwork" {
   name                = "${var.prefix}-network"
   address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.mcit.name
+  resource_group_name = azurerm_resource_group.batcha06.name
+  location            = azurerm_resource_group.batcha06.location
 }
 resource "azurerm_subnet" "mcitinternal" {
   name                 = "internal"
-  resource_group_name  = azurerm_resource_group.mcit.name
-  virtual_network_name = azurerm_virtual_network.mcit.name
+  resource_group_name  = azurerm_resource_group.batcha06.name
+  virtual_network_name = azurerm_virtual_network.mcitnetwork.name
   address_prefixes     = ["10.0.2.0/24"]
 }
 resource "azurerm_network_interface" "mcitnic" {
   name                = "${var.prefix}-nic"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.batcha06.location
+  resource_group_name = azurerm_resource_group.batcha06.name
 
   ip_configuration {
     name                          = "mcit ip configuration"
-    subnet_id                     = azurerm_subnet.mcit.id
+    subnet_id                     = azurerm_subnet.mcitinternal.id
     private_ip_address_allocation = "Dynamic"
   }
 }
 resource "azurerm_virtual_machine" "azurermvm" {
   name                  = "${var.prefix}-vm"
-  location              = azurerm_resource_group.example.location
-  resource_group_name   = azurerm_resource_group.example.name
-  network_interface_ids = [azurerm_network_interface.main.id]
+  location              = azurerm_resource_group.batcha06.location
+  resource_group_name   = azurerm_resource_group.batcha06.name
+  network_interface_ids = [azurerm_network_interface.mcitnic.id]
   vm_size               = "Standard_DS1_v2"
 
   storage_image_reference {
