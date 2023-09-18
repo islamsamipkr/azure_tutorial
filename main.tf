@@ -3,16 +3,34 @@ resource "azurerm_resource_group""batcha06"{
     location="Canada Central"   
 }
 
-resource "azurerm_storage_account" "awp" {
-  name                     = "${var.prefix}storage${var.env}"
-  resource_group_name      = azurerm_resource_group.batcha06.name
-  location                 = azurerm_resource_group.batcha06.location
-  account_tier             = var.account_tier
-  account_replication_type = "GRS"
+resource "azurerm_kubernetes_cluster" "example" {
+  name                = "example-aks1"
+  location            = azurerm_resource_group.batcha06.location
+  resource_group_name = azurerm_resource_group.batcha06.name
+  dns_prefix          = "exampleaks1"
+
+  default_node_pool {
+    name       = "default"
+    node_count = 1
+    vm_size    = "Standard_D2_v2"
+  }
+
+  identity {
+    type = "SystemAssigned"
+  }
 
   tags = {
-    environment = "staging"
+    Environment = "Production"
   }
 }
 
+output "client_certificate" {
+  value     = azurerm_kubernetes_cluster.example.kube_config.0.client_certificate
+  sensitive = true
+}
 
+output "kube_config" {
+  value = azurerm_kubernetes_cluster.example.kube_config_raw
+
+  sensitive = true
+}
