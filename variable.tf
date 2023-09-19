@@ -23,3 +23,7 @@ variable "account_tier"{
 type =string
 default="Standard"
 }
+variable "cluster_count"{
+type=integer
+default=2
+}
