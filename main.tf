@@ -5,6 +5,7 @@ resource "azurerm_resource_group""batcha06"{
 
 resource "azurerm_kubernetes_cluster" "mcitcluster" {
   name                = "example-aks1"
+  count= var.cluster_count
   location            = azurerm_resource_group.batcha06.location
   resource_group_name = azurerm_resource_group.batcha06.name
   dns_prefix          = "exampleaks1"
