@@ -24,6 +24,6 @@ type =string
 default="Standard"
 }
 variable "cluster_count"{
-type=integer
+type=number
 default=2
 }
