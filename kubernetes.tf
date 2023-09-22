@@ -46,4 +46,12 @@ resource "azurerm_kubernetes_cluster" "k8scluster" {
     Environment = "Production"
   }
 }
+output "client_certificate_kubernetes" {
+  value     = azurerm_kubernetes_cluster.k8scluster[*].client_certificate.name
+  sensitive = true
+}
 
+output "kube_config_kubernetes" {
+  value = azurerm_kubernetes_cluster.k8scluster[*].kube_config_raw
+  sensitive = true
+}
