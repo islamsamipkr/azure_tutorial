@@ -48,7 +48,7 @@ resource "azurerm_kubernetes_cluster" "k8scluster" {
 }
 
 output "client_certificate" {
-  value     = azurerm_kubernetes_cluster.k8scluster.kube_config[*].client_certificate
+  value     = azurerm_kubernetes_cluster.k8scluster[*].client_certificate.name
   sensitive = true
 }
 
