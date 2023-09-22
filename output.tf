@@ -1,6 +1,6 @@
 # Rename these outputs in one of the files (main.tf or kubernetes.tf) to make them unique
 output "client_certificate_main" {
-  value     = [for cluster in azurerm_kubernetes_cluster.k8scluster: cluster.kube_config.0,client_certificate]
+  value     = [for cluster in azurerm_kubernetes_cluster.k8scluster: cluster.kube_config.0.client_certificate]
 #azurerm_kubernetes_cluster.k8scluster[*].kube_config.0.client_certificate
 
   sensitive = true
