@@ -7,7 +7,7 @@ output "client_certificate_main" {
 }
 
 output "kube_config_main" {
-  value     = [for cluster in azurerm_kubernetes_cluster.k8scluster: cluster.kube_config_raw.0]
+  value     = [for cluster in azurerm_kubernetes_cluster.k8scluster: cluster.kube_config_raw]
   sensitive = true
 }
 
