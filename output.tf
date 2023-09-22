@@ -6,10 +6,10 @@ output "client_certificate_main" {
   sensitive = true
 }
 
-#output "kube_config_main" {
-#  value     = azurerm_kubernetes_cluster.k8scluster[*].kube_config_raw.0
-#  sensitive = true
-#}
+output "kube_config_main" {
+  value     = [for cluster in azurerm_kubernetes_cluster.k8scluster: cluster.kube_config_raw.0
+  sensitive = true
+}
 
 #output "client_certificate" {
 #  value = azurerm_kubernetes_cluster.example.kube_config.0.client_certificate
