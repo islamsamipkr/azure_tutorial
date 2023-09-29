@@ -1,6 +1,6 @@
 #This is an Azure Montreal College Tutorial for Storage Account creation--->Storage Container name Creation--->Storage Blob Creation
 locals{ 
-  cluster_names=["k8batcha06","k9batcha06","k10batcha06","k11batcha06","k12batcha06"]
+  cluster_names="Salikcluster"
 }
 resource "azurerm_resource_group" "azureresourcegroup" {
   name     = "MCIT_resource_group"
