@@ -1,6 +1,6 @@
 resource "azurerm_kubernetes_cluster_node_pool" "kube1nodepool" {
- for_each               = {for cluster in azurerm_kubernetes_cluster.batchabcd:cluster=>cluster}
- name                   = each.value.name
+ for_each               = azurerm_kubernetes_cluster.batchabcd
+ name                   = "${each.key}-nodepool"
  kubernetes_cluster_id  = each.value.id
  vm_size                = "Standard_DS2_v2"
  node_count             = 1
