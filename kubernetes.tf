@@ -38,3 +38,6 @@ output "kube_config" {
 
   sensitive = true
 }
+output "kubes_count"{
+    value=azurerm_kubernetes_cluster.batchabcd.count.index
+}
