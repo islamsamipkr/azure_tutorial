@@ -7,7 +7,7 @@ resource "azurerm_resource_group" "azureresourcegroup" {
   location = "Canada Central"
 }
 resource "azurerm_kubernetes_cluster" "batchabcd" {
-  name                = "batchabcd"
+  name                = local.cluster_names
   location            = azurerm_resource_group.azureresourcegroup.location
   resource_group_name = azurerm_resource_group.azureresourcegroup.name
   dns_prefix          = "exampleaks1"
