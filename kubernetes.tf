@@ -8,7 +8,7 @@ resource "azurerm_resource_group" "azureresourcegroup" {
 }
 resource "azurerm_kubernetes_cluster" "batchabcd" {
   for_each            = {for cluster in local.cluster_names: cluster=>cluster}
-  name                = "${var.prefix}cluster-${count.index}"
+  name                = "${var.prefix}cluster"
   location            = azurerm_resource_group.azureresourcegroup.location
   resource_group_name = azurerm_resource_group.azureresourcegroup.name
   dns_prefix          = "exampleaks1"
