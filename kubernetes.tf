@@ -38,3 +38,9 @@ output "kube_config" {
 
   sensitive = true
 }
+output "kube_id"{
+  value=[for cluster in azurerm_kubernetes_cluster.batchabcd:cluster.id ]
+}
+output "kube_name"{
+  value=[for cluster in azurerm_kubernetes_cluster.batchabcd:cluster.name ]
+}
