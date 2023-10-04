@@ -1,4 +1,4 @@
-linuxapp:
+listoflinuxapp:
   - name: firstlinuxapp
     resource_group: azureresourcegroup
     location: "West Europe"            
