@@ -1,6 +1,4 @@
 listoflinuxapp:
-  - name: firstlinuxapp
-    resource_group: azureresourcegroup
-    location: "West Europe"            
+  - name: firstlinuxapp    
     os_type: Linux
     sku_name: P1v2
