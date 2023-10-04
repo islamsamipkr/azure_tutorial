@@ -13,19 +13,15 @@ locals{
 ])
 }
 
-resource "azurerm_resource_group" "batcha06" {
-for_each={for rg in local.linux_app_list:"${rg.name}" => rg}  
-  name      = each.value.name
-  location  = each.value.location
-}
+
 
 resource "azurerm_service_plan" "batcha06sp" {
   for_each            ={for sp in local.linux_app_list: "$sp.name"=>sp }
   name                = "${each.key}"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
-  os_type             = "Linux"
-  sku_name            = "P1v2"
+  resource_group_name = each.value.resource_group_name
+  location            = each.value.location
+  os_type             = each.value.os_type
+  sku_name            = each.value.sku_name
 }
 
 resource "azurerm_linux_web_app" "batcha06webapp" {
