@@ -2,7 +2,7 @@ locals{
   linux_app=[for f in fileset("${path.module}/configs", "[^_]*.yaml") : yamldecode(file("${path.module}/configs/${f}"))]
   linux_app_list = flatten([
     for app in local.linux_app : [
-      for linuxapps in try(app.linux_app, []) :{
+      for linuxapps in try(app.listoflinuxapp, []) :{
         name=linuxapps.name
         resource_group_name=linuxapps.resource_group
         location=linuxapps.location
