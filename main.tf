@@ -14,7 +14,7 @@ locals{
 }
 
 resource "azurerm_resource_group" "example" {
-for_each={for rg in local.linux_app_list:"${rg.name} => rg}  
+for_each={for rg in local.linux_app_list:"${rg.name}" => rg}  
 name     = each.value.name
   location = each.value.location
 }
