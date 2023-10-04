@@ -18,7 +18,7 @@ locals{
 resource "azurerm_service_plan" "batcha06sp" {
   for_each            ={for sp in local.linux_app_list: "$sp.name"=>sp }
   name                = "${each.key}"
-  resource_group_name = azurerm_resource_group.
+  resource_group_name = azurerm_resource_group.azureresourcegroup.name
   location            = each.value.location
   os_type             = each.value.os_type
   sku_name            = each.value.sku_name
