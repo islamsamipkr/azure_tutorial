@@ -8,4 +8,3 @@ resource "azurerm_web_application_firewall_policy" "wafpol" {
 
   managed_rules=each.value.managed_rules
   }
-}
