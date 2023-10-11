@@ -21,4 +21,11 @@ resource "azurerm_web_application_firewall_policy" "wafpol" {
     action = each.value.action
 
   }
+  managed_rules {
+
+    managed_rule_set {
+      type    = "OWASP"
+      version = "3.2"
+    }
+  }
 }
