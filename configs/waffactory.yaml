@@ -4,15 +4,15 @@ listofwafpolicies:
       name: "Rule1"
       priority: 1
       rule_type: "MatchRule"
-      matched_conditions:
-        matched_variable:
-          variable_name: "RemoteAddr"
+      match_conditions:
+      - match_variables:
+        - variable_name: "RemoteAddr"
         operator: "IPMatch"
         negation_condition: false
         match_values: ["192.168.1.0/24", "10.0.0.0/24"]
       action: "Block"
     managed_rules:
       managed_rule_set:
-        type    : "OWASP"
+      - type    : "OWASP"
         version : "3.2"
   
