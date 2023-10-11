@@ -12,10 +12,9 @@ locals{
     waf_policy=[for f in fileset("${path.module}/configs", "[^_]*.yaml") : yamldecode(file("${path.module}/configs/${f}"))]
     waf_policy_list = flatten([
     for policy in local.waf_policy : [
-      for policy in try(policy.listofwafpolicy, []) :{
-        name=policy.name
-        custom_rules=policy.custom_rules
-          name=policy.custom_rules
+      for policies in try(policy.listofwafpolicy, []) :{
+        name=policies.name
+        custom_rules=policies.custom_rules
           
               }
     ]
