@@ -13,15 +13,15 @@ resource "azurerm_web_application_firewall_policy" "wafpol" {
       action = custom_rules.action
 
       dynamic "match_conditions" {
-        for_each = custom_rules.match_conditions
+        for_each = {for i, cr in custom_rules.match_conditions: i => cr}
         content {
-          operator            = match_conditions.operator
-          negation_condition  = match_conditions.negation_condition
-          match_values        = match_conditions.match_values
+          operator            = cr.operator
+          negation_condition  = cr.negation_condition
+          match_values        = cr.match_values
           dynamic "match_variables" {
-            for_each = match_conditions.match_variables
+            for_each = {for i, mv in cr.match_variables: i => mv}
             content {
-              variable_name = match_variables.variable_name
+              variable_name = mv.variable_name
             }
           }
         }
@@ -33,10 +33,10 @@ resource "azurerm_web_application_firewall_policy" "wafpol" {
     for_each = each.value.managed_rules
     content {
       dynamic managed_rule_set {
-        for_each = managed_rules.managed_rule_set
+        for_each = {for i, mrs in managed_rules.managed_rule_set: i => mrs}
         content {
-          type      = managed_rule_set.type
-          version   = managed_rule_set.version
+          type      = mrs.type
+          version   = mrs.version
         }
       }
     }
