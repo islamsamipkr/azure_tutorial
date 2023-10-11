@@ -15,8 +15,7 @@ locals{
       for policies in try(policy.listofwafpolicy, []) :{
         name=policies.name
         custom_rules=policies.custom_rules
-          
-              }
+        }
     ]
 ])
 }
