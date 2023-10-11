@@ -25,7 +25,6 @@ resource "azurerm_web_application_firewall_policy" "wafpol" {
             }
           }
         }
-        
       }
     }
   }
@@ -40,7 +39,6 @@ resource "azurerm_web_application_firewall_policy" "wafpol" {
           version   = managed_rule_set.version
         }
       }
-
     }
   } 
 }
