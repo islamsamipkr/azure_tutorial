@@ -1,7 +1,7 @@
 listofwafpolicies:
   - name: wafpolicy
     custom_rules:
-      name: "Rule1"
+    - name: "Rule1"
       priority: 1
       rule_type: "MatchRule"
       match_conditions:
@@ -12,7 +12,7 @@ listofwafpolicies:
         match_values: ["192.168.1.0/24", "10.0.0.0/24"]
       action: "Block"
     managed_rules:
-      managed_rule_set:
+    - managed_rule_set:
       - type    : "OWASP"
         version : "3.2"
   
