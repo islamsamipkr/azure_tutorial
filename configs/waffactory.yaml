@@ -1,0 +1,13 @@
+listofwafpolicies:
+  - name: wafpolicy
+    custom_rules:
+      name: "Rule1"
+      priority: 1
+      rule_type: "MatchRule"
+      matched_conditions:
+        matched_variable:
+          variable_name: "RemoteAddr"
+        operator: "IPMatch"
+        negation_condition: false
+        match_values: ["192.168.1.0/24", "10.0.0.0/24"]
+      action: "Block"
